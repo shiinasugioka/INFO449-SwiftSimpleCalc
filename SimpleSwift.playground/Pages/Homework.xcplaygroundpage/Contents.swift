@@ -26,10 +26,66 @@ print("Welcome to the UW Calculator Playground")
 //: 
 //: For this latter set of operations, it is safe to assume that `["count"]` (with no additional arguments) is 0, `["avg"]` is also 0, and `["fact"]` is 0. `["1", "fact"]` should return 1, and `["0", "fact"]` should also return 1. (Yes, 0-factorial is 1. True story.)
 //: 
+// array of Strings, expecting each "part" of the calculation expression to be each be in its own String
+// ex: calculate(["2", "+", "2"])
 func calculate(_ args: [String]) -> Int {
+    let lastElem = args.last
+    let numElem = args.count - 1
+    
+    if (args.count == 1) {
+        return 0
+    }
+    
+    if (lastElem == "count") {
+        return numElem
+        
+    } else if (lastElem == "avg") {
+        var sum = 0
+        for i in 0...numElem {
+            sum += Int(args[i]) ?? 0
+        }
+        
+        return (sum == 0) ? 0 : (sum / numElem)
+        
+    } else if (lastElem == "fact") {
+        let num = Int(args[0])
+        if (num == 0) {
+            return 1
+        }
+        
+        var prod = 1
+        for i in 1...num! {
+            prod *= i
+        }
+        
+    }
+    
+    if (args.count == 3) {
+        let left = Int(args[0]) ?? 0
+        let right = Int(args[2]) ?? 0
+        
+        let op = args[1]
+        switch op {
+        case "+":
+            return left + right
+        case "-":
+            return left - right
+        case "*":
+            return left * right
+        case "/":
+            return left / right
+        case "%":
+            return left % right
+        default:
+            print("Unknown operator: \(op)")
+        }
+    }
+    
     return -1
 }
 
+// single String containing the entire expression
+// ex: calculate("2 + 2")
 func calculate(_ arg: String) -> Int {
     return -1
 }
