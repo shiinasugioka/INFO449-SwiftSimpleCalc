@@ -57,6 +57,7 @@ func calculate(_ args: [String]) -> Int {
         for i in 1...num! {
             prod *= i
         }
+        return prod;
         
     }
     
@@ -87,7 +88,10 @@ func calculate(_ args: [String]) -> Int {
 // single String containing the entire expression
 // ex: calculate("2 + 2")
 func calculate(_ arg: String) -> Int {
-    return -1
+    let strArr = arg.split(separator: " ")
+    let array = strArr.map{ String($0) }
+    
+    return calculate(array)
 }
 
 //: Below this are the test expressions/calls to verify if your code is correct.
